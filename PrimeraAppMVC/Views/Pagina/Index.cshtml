@@ -1,0 +1,62 @@
+﻿@model IEnumerable<PrimeraAppMVC.Clases.PaginaCLS>
+
+@{
+    ViewData["Title"] = "Index";
+    string mensajePagina = ViewBag.mensajePagina;
+}
+
+<h1>Index</h1>
+
+<form asp-controller="Pagina" asp-action="Index" id="frmFiltrar"
+      class="mb-2" method="post" style="display:grid; grid-template-columns:1fr 2fr 1fr 1fr">
+    <label>Buscar por mensaje:</label>
+    <input type = "text" class="form form-control" name="mensaje" id="mensaje" value="@mensajePagina"/>
+    <input type="submit" class="btn btn-primary" value="Buscar" />
+    <input type="button" class="btn btn-danger" value="Limpiar" onclick="Limpiar()" />
+</form>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idpagina)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.mensaje)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.accion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.controlador)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idpagina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mensaje)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.accion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.controlador)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>
+
+<script>
+    function Limpiar() {
+        document.getElementById("mensaje").value = "";
+        document.getElementById("frmFiltrar").submit();
+    }
+</script>

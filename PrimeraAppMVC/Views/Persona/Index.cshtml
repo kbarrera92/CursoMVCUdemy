@@ -1,0 +1,43 @@
+﻿@using PrimeraAppMVC.Clases;
+@model IEnumerable<PersonaCLS>
+@{
+    ViewData["Title"] = "Index";
+    List<SelectListItem> listaSexo = ViewBag.listaSexo;
+}
+
+<form asp-controller="Persona" asp-action="Index" id="frmFiltrar" 
+      class="mb-2" method="post" style="display:grid; grid-template-columns:1fr 2fr 1fr 1fr">
+    <label>Ingrese sexo:</label>
+    @Html.DropDownList("idsexo", listaSexo, new { @class = "form form-control" })
+    <input type="submit" class="btn btn-primary" value="Buscar" />
+    <input type="button" class="btn btn-danger" value="Limpiar" onclick="Limpiar()" />
+</form>
+
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.idpersona)</th>
+            <th>@Html.DisplayNameFor(model => model.nombreCompleto)</th>
+            <th>@Html.DisplayNameFor(model => model.email)</th>
+            <th>@Html.DisplayNameFor(model => model.nombreSexo)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(PersonaCLS persona in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => persona.idpersona)</td>
+            <td>@persona.nombreCompleto</td>
+            <td>@persona.email</td>
+            <td>@persona.nombreSexo</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function Limpiar() {
+        document.getElementById("idsexo").value = "";
+        document.getElementById("frmFiltrar").submit();
+    }
+</script>

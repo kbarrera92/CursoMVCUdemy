@@ -1,0 +1,26 @@
+﻿@using PrimeraAppMVC.Clases;
+@model IEnumerable<InstructorCLS>
+@{
+    ViewData["Title"] = "PruebaLista";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido Paterno</th>
+            <th>Apellido Materno</th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach(InstructorCLS instructorCLS in Model)
+            {
+        <tr>
+            <td>@instructorCLS.nombre</td>
+            <td>@instructorCLS.apPaterno</td>
+            <td>@instructorCLS.apMaterno</td>
+        </tr>
+            }
+    </tbody>
+</table>
+

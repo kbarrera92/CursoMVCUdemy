@@ -1,0 +1,59 @@
+﻿@model IEnumerable<PrimeraAppMVC.Clases.SedeCLS>
+
+@{
+    ViewData["Title"] = "Index";
+    string nombreSede = ViewBag.nombreSede;
+}
+
+<form id="frmBusqueda" method="post" asp-controller="Sede" asp-action="Index" class="mb-2">
+    <label>Ingrese el nombre de la sede</label>
+    <input type="text" class="form form-control" name="nombresede" id="nombresede" value="@nombreSede" onkeyup="onKeyUp(event)" />
+</form>
+
+<table class="table" id="myTable">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idsede)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nombresede)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.direccionsede)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idsede)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombresede)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccionsede)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>
+
+<script>
+    function Buscar() {        
+        document.getElementById("frmBusqueda").submit();
+        document.getElementById("nombresede").focus();
+    }
+
+    function onKeyUp(event) {
+        var keycode = event.keyCode;
+        if (keycode == '13') {
+            Buscar()
+        }
+    }
+    
+</script>

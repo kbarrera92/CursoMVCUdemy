@@ -1,0 +1,31 @@
+﻿@using PrimeraAppMVC.Clases;
+@model EspecialidadCLS
+@{
+    ViewData["Title"] = "Agregar";
+}
+
+<h1>Agregar</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <form asp-controller="Especialidad" asp-action="Agregar" method="post">
+            <div class="form-group">
+                <label asp-for="nombre"></label>
+                <input asp-for="nombre" class="form form-control" />
+                <span asp-validation-for="nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="descripcion"></label>
+                <input asp-for="descripcion" class="form form-control" />
+                <span asp-validation-for="descripcion" class="text-danger"></span>
+            </div>
+            <div class="form-group">                
+                <input type="submit" value="Agregar" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-danger">Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+

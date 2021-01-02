@@ -1,0 +1,46 @@
+﻿@using PrimeraAppMVC.Clases;
+@model IEnumerable<EspecialidadCLS>
+@{
+    ViewData["Title"] = "Index";
+
+    string nombreEspecialidad = ViewBag.nombreEspecialidad;
+}
+
+<a class="btn btn-secondary" asp-action="Agregar">
+    Agregar
+</a>
+
+<form asp-controller="Especialidad" method="post" id="miFormulario" asp-action="Index" style="display:grid;grid-template-columns: 1fr 2fr 1fr 1fr" class="mb-2">
+    <label>Ingrese el nombre de la especialidad</label>
+    <input type="text" id="nombre" class="form form-control" name="nombre" value="@nombreEspecialidad" />
+    <input type="submit" value="Buscar" class="btn btn-info form-control" />
+    <input type="button" value="Limpiar" class="btn btn-danger form-control" onclick="limpiar()" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id Especialidad</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+        </tr>
+        
+    </thead>
+    <tbody>
+        @foreach(EspecialidadCLS items in Model)
+        {
+        <tr>
+            <td>@items.idespecialidad</td>
+            <td>@items.nombre</td>
+            <td>@items.descripcion</td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function limpiar() {
+        document.getElementById("nombre").value = "";
+        document.getElementById("miFormulario").submit();
+    }
+</script>

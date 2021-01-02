@@ -1,0 +1,67 @@
+﻿@model IEnumerable<PrimeraAppMVC.Clases.TipoUsuarioCLS>
+
+@{
+    ViewData["Title"] = "Index";
+    string nombreusuario = ViewBag.Nombre;
+    string descripcion = ViewBag.Descripcion;
+    int idtipousuario = ViewBag.IdTipoUsuario;
+}
+
+<h1>Listado de tipos de usuarios</h1>
+
+<form asp-controller="TipoUsuario" asp-action="Index">
+    <input type="submit" value="Filtrar" class="btn btn-primary"/>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.idusuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nombreusuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.descripcion)
+                </th>
+
+            </tr>
+            <tr>
+                <th>
+                    @if (idtipousuario == 0)
+                    {
+                        <input type="number" name="idusuario" class="form form-control" />
+                    }
+                    else
+                    {
+                        <input type="number" value="@idtipousuario" name="idusuario" class="form form-control" />
+                    }
+
+                </th>
+                <th>
+                    <input type="text" value="@nombreusuario" name="nombreusuario" class="form form-control" />
+                </th>
+                <th>
+                    <input type="text" value="@descripcion" name="descripcion" class="form form-control" />
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idusuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombreusuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
